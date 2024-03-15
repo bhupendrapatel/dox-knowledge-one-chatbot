@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
+import {persistor, store} from './store/store';
+import Layout from './layout/Layout';
+import ThemeContext from './context/themeContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [theme, setTheme] = React.useState('light'); // State to hold the current theme
+
+    const toggleTheme = () => {
+        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light'); // Function to toggle the theme
+    };
+
+    return (
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <ThemeContext.Provider value={{ theme, toggleTheme }}> {/* Pass the current theme and the toggle function as context */}
+                    <Layout />
+                </ThemeContext.Provider>
+            </PersistGate>
+        </Provider>
+    );
 }
 
 export default App;

@@ -50,3 +50,6 @@ W
 'src/components/SidePanel/SidePanel.scss,8/3/8397738563d5aebc6dafe1180fbc35eaf66fc027
 K
 src/reducer/chat.reducer.js,5/c/5ce598968c7863e8c1ec8ca247b312610ccdef47
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302

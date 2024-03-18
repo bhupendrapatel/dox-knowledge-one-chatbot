@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import MessageList from '../MessageList/MessageList';
 import MessageInput from '../MessageInput/MessageInput';
-import ThemeContext from '../../context/themeContext'; // Import ThemeContext
+import ThemeContext from '../../context/themeContext';
+import {MAX_TOKENS, MODEL, TEMP} from '../../constants/constants';
+import {post} from '../../utility/http'; // Import ThemeContext
 
 const ChatApp = () => {
     const dispatch = useDispatch();
@@ -15,8 +17,22 @@ const ChatApp = () => {
         // Fetch messages from server or initial setup (if needed)
     }, []); // Empty dependency array to run only once
 
-    const handleSendMessage = (text) => {
-        // dispatch(sendMessage({ text }));
+    const handleSendMessage = async (text) => {
+        console.log(text);
+        try {
+            const response = await post('completions', {
+                messages: [{
+                    role: 'user',
+                    content: text,
+                }],
+                max_tokens: MAX_TOKENS,
+                model: MODEL,
+                temperature: TEMP,
+            });
+            console.log(response);
+        } catch (error) {
+            console.error('Error sending message: ', error);
+        }
     };
 
     return (

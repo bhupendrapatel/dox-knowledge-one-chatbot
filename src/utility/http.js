@@ -11,7 +11,7 @@ export const STATUS_CODES = {
 };
 
 // Base URL
-const baseURL = 'https://api.openai.com/v1/chat/completions';
+const baseURL = 'https://api.openai.com/v1/chat';
 
 // Fetch function with interceptor
 const fetchWithInterceptor = async (url, options) => {
@@ -19,7 +19,7 @@ const fetchWithInterceptor = async (url, options) => {
     options.headers = {
         ...options.headers,
         "Content-Type": 'application/json',
-        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+        Authorization: `Bearer ${process.env.REACT_APP_OPEN_AI_API_KEY}`,
     };
 
     try {

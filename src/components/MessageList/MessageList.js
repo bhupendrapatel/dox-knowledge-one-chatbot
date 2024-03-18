@@ -3,7 +3,7 @@ import React, {useContext} from 'react';
 import {connect} from 'react-redux';
 import { motion } from 'framer-motion';
 import ThemeContext from '../../context/themeContext';
-import {getMessages} from '../../model/chat/chat.selector';
+import {getError, getMessages} from '../../model/chat/chat.selector';
 
 const messageVariants = {
     enter: (direction) => ({
@@ -47,4 +47,5 @@ const MessageList = ({messages}) => {
 
 export default connect((state) => ({
     messages: getMessages(state),
+    error: getError(state),
 }))(MessageList);

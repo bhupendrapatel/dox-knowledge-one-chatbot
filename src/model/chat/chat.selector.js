@@ -13,3 +13,8 @@ export const getActiveChat = createSelector(
     state => state.chat.activeChat,
     activeChat => activeChat,
 );
+
+export const getError = createSelector(
+    state => state.chat.error,
+    error => error,
+);

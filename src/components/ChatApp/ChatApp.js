@@ -49,8 +49,8 @@ const ChatApp = () => {
                 margin: '0 10%',
             }}
         >
-            <MessageList messages={messages} />
-            <MessageInput onSendMessage={handleSendMessage} />
+            <MessageList />
+            <MessageInput />
         </motion.div>
     );
 };

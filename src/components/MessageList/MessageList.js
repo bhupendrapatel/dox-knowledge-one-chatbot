@@ -1,7 +1,9 @@
 // MessageList.js
 import React, {useContext} from 'react';
+import {connect} from 'react-redux';
 import { motion } from 'framer-motion';
 import ThemeContext from '../../context/themeContext';
+import {getMessages} from '../../model/chat/chat.selector';
 
 const messageVariants = {
     enter: (direction) => ({
@@ -17,12 +19,8 @@ const messageVariants = {
     },
 };
 
-const MessageList = () => {
+const MessageList = ({messages}) => {
     const {theme} = useContext(ThemeContext);
-    const messages = [
-        {text: 'Hello, world!'},
-        {text: 'In the vast expanse of the enchanted forest, where ancient trees stand tall and whispers of magic dance on the breeze, there exists a hidden village known as Evergreen Haven. Tucked away f'},
-    ];
 
     return (
         <motion.div
@@ -47,4 +45,6 @@ const MessageList = () => {
     );
 };
 
-export default MessageList;
+export default connect((state) => ({
+    messages: getMessages(state),
+}))(MessageList);

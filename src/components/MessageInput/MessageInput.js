@@ -1,18 +1,24 @@
 // MessageInput.js
-import React, {useContext, useState} from 'react';
-import { useDispatch } from 'react-redux';
+import React, {useState} from 'react';
+import {connect, useDispatch} from 'react-redux';
 import {PaperAirplaneIcon} from '@heroicons/react/24/solid';
-import ThemeContext from '../../context/themeContext';
+import {generateUUID} from '../../utility/common.utils';
+import {sendMessage} from '../../model/chat/chat.reducer';
+import {getActiveChat} from '../../model/chat/chat.selector';
 
-const MessageInput = ({ onSendMessage }) => {
+const MessageInput = ({activeChat}) => {
     const dispatch = useDispatch();
-    const theme = useContext(ThemeContext);
 
     const [messageText, setMessageText] = useState('');
 
     const handleSendMessage = () => {
         if (messageText.trim()) {
-            onSendMessage(messageText); // Call passed-down function or dispatch action
+            dispatch(sendMessage({
+                id: generateUUID(),
+                text: messageText,
+                timestamp: Date.now(),
+                chatId: activeChat,
+            }));
             setMessageText('');
         }
     };
@@ -41,4 +47,8 @@ const MessageInput = ({ onSendMessage }) => {
     );
 };
 
-export default MessageInput;
+export default connect((state) => {
+    return {
+        activeChat: getActiveChat(state),
+    };
+})(MessageInput);

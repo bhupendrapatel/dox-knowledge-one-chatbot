@@ -5,6 +5,8 @@ export const ERROR = 'ERROR';
 export const SET_THEME = 'SET_THEME';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 
+/* TODO: Make this thunk actions */
+
 export const sendMessageAction = (message) => ({
     type: SEND_MESSAGE,
     payload: message,

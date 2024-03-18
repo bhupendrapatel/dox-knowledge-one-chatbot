@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     messages: [],
-    theme: 'light',
+    theme: 'dark',
 };
 
 const chatSlice = createSlice({

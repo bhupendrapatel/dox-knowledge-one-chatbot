@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistor, store} from './store/store';
@@ -6,7 +6,7 @@ import Layout from './layout/Layout';
 import ThemeContext from './context/themeContext';
 
 function App() {
-    const [theme, setTheme] = React.useState('light'); // State to hold the current theme
+    const [theme, setTheme] = useState('dark'); // State to hold the current theme
 
     const toggleTheme = () => {
         setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light'); // Function to toggle the theme

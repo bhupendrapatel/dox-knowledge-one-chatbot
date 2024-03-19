@@ -1,6 +1,28 @@
 // chatSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {generateUUID} from '../../utility/common.utils';
+
+//  const state = {
+//      activeChat: 'chat1',
+//      userSelection: 'confluence',
+//         messages: {
+//             uuid1: {
+//                 id: 'uuid1',
+//                     text: 'message be it sender or receiver',
+//                     chatId: 'sessionUUID',
+//                     timestamp: Date.now(),
+//                     sender: true,
+//             },
+//             uuid2: {
+//                 id: 'uuid2',
+//                     text: 'message be it sender or receiver',
+//                     chatId: 'sessionUUID',
+//                     timestamp: Date.now(),
+//                     sender: false,
+//             },
+//         }
+//
+// };
 
 const initialState = {
     messages: {},
@@ -8,12 +30,17 @@ const initialState = {
     activeChat: generateUUID(),
     loading: false,
     error: null,
+    userSelection: null,
 };
 
 const chatSlice = createSlice({
     name: 'chat',
     initialState,
     reducers: {
+        clearState: () => initialState,
+        updateUserSelection: (state, action) => {
+            state.userSelection = action.payload;
+        },
         sendMessage: (state, action) => {
             state.messages = {
                 ...state.messages,
@@ -26,7 +53,7 @@ const chatSlice = createSlice({
                 [action.payload.id]: action.payload,
             };
         },
-        activeChat: (state, action) => {
+        setActiveChat: (state, action) => {
             state.activeChat = action.payload;
         },
         setLoading: (state) => {
@@ -41,5 +68,5 @@ const chatSlice = createSlice({
     },
 });
 
-export const { sendMessage, activeChat, setLoading, deleteMessage, receiveMessage } = chatSlice.actions;
+export const {sendMessage, activeChat, setLoading, deleteMessage, setActiveChat, clearState, updateUserSelection} = chatSlice.actions;
 export default chatSlice.reducer;

@@ -3,7 +3,8 @@ import React, {useContext} from 'react';
 import {connect} from 'react-redux';
 import { motion } from 'framer-motion';
 import ThemeContext from '../../context/themeContext';
-import {getError, getMessages} from '../../model/chat/chat.selector';
+import {getUserSelection, getError, getMessages} from '../../model/chat/chat.selector';
+import SelectionTile from '../SelectionTile/SelectionTile';
 
 const messageVariants = {
     enter: (direction) => ({
@@ -19,12 +20,12 @@ const messageVariants = {
     },
 };
 
-const MessageList = ({messages}) => {
+const MessageList = ({messages, userSelection}) => {
     const {theme} = useContext(ThemeContext);
 
-    return (
+    return <>{userSelection ? (
         <motion.div
-            className="flex flex-col overflow-y-auto h-full"
+            className='flex flex-col overflow-y-auto h-full'
             initial={messageVariants.exit}
             animate={messageVariants.enter('up')}
             exit={messageVariants.exit}>
@@ -36,16 +37,20 @@ const MessageList = ({messages}) => {
                     variants={messageVariants}
                     custom={index}
                     exit={messageVariants.exit}
-                    className={`px-8 py-4 mb-2 rounded-lg shadow ${theme === 'light' ? 'bg-gray-100':  'bg-neutral-700'}`}
-                >
-                    <p className={theme === 'light' ? 'text-gray-500': 'text-gray-50'}>{message.text}</p>
+                    className={`px-8 py-4 mb-2 rounded-lg shadow ${theme === 'light' ? 'bg-gray-100' : 'bg-neutral-700'}`}>
+                    <p className={theme === 'light' ? 'text-gray-500' : 'text-gray-50'}>{message.text}</p>
                 </motion.div>
             ))}
         </motion.div>
-    );
+    ) : <SelectionTile/>
+}</>;
 };
 
-export default connect((state) => ({
-    messages: getMessages(state),
-    error: getError(state),
-}))(MessageList);
+export default connect((state) => {
+    const userSelection = getUserSelection(state);
+    return ({
+        userSelection,
+        messages: getMessages(state),
+        error: getError(state),
+    });
+})(MessageList);

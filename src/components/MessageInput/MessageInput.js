@@ -4,9 +4,9 @@ import {connect, useDispatch} from 'react-redux';
 import {PaperAirplaneIcon} from '@heroicons/react/24/solid';
 import {generateUUID} from '../../utility/common.utils';
 import {sendMessage} from '../../model/chat/chat.reducer';
-import {getActiveChat} from '../../model/chat/chat.selector';
+import {getActiveChat, getUserSelection} from '../../model/chat/chat.selector';
 
-const MessageInput = ({activeChat}) => {
+const MessageInput = ({chatId, activeChat, onSendMessage, userSelection}) => {
     const dispatch = useDispatch();
 
     const [messageText, setMessageText] = useState('');
@@ -19,6 +19,7 @@ const MessageInput = ({activeChat}) => {
                 timestamp: Date.now(),
                 chatId: activeChat,
             }));
+            onSendMessage({id: chatId, text: messageText}); // Call passed-down function or dispatch action
             setMessageText('');
         }
     };
@@ -31,7 +32,7 @@ const MessageInput = ({activeChat}) => {
 
     return (
         <div className="flex items-center rounded-full my-10 mx-20 p-2 border border-gray-200 dark:border-gray-700">
-            <input
+            <input disabled={!userSelection}
                 className={`flex-grow px-2 py-1 rounded-md bg-transparent focus:outline-none`}
                 placeholder="Enter a prompt here..."
                 value={messageText}
@@ -49,6 +50,7 @@ const MessageInput = ({activeChat}) => {
 
 export default connect((state) => {
     return {
+        userSelection: getUserSelection(state),
         activeChat: getActiveChat(state),
     };
 })(MessageInput);

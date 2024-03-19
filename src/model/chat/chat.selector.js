@@ -10,11 +10,30 @@ export const getMessages = createSelector(
 );
 
 export const getActiveChat = createSelector(
-    state => state.chat.activeChat,
-    activeChat => activeChat,
+    state => state.chat,
+    chat => chat.activeChat,
 );
 
 export const getError = createSelector(
-    state => state.chat.error,
-    error => error,
+    state => state.chat,
+    chat => chat.error,
+);
+
+export const getUserSelection = createSelector(
+    state => state.chat,
+    chat => chat.userSelection,
+);
+
+export const getChatList = createSelector(
+    state => state.chat.messages,
+    messages => {
+        return Object.values(messages).reduce((acc, curr) => {
+            if (acc[curr.chatId]) {
+                acc[curr.chatId] = [...acc[curr.chatId], curr];
+            } else {
+                acc[curr.chatId] = [curr];
+            }
+            return acc;
+        }, {});
+    }
 );

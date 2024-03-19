@@ -13,7 +13,6 @@ import { post } from '../../utility/http'; // Import ThemeContext
 const ChatApp = ({ activeChat }) => {
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
-    let setTimer;
     const {messages} = useSelector((state) => state.chat);
     const {theme} = useContext(ThemeContext); // Use useContext to access the current theme and the toggle function
 

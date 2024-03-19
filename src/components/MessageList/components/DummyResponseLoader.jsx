@@ -5,7 +5,7 @@ const DummyResponseLoader = ({theme}) => {
         <div className={`flex justify-start mt-5`} key='loading-indicater'>
             <img
                 className='object-cover w-10 h-10 rounded-full mr-5'
-                src='/amdocs-a.svg'
+                src='/favicon.ico'
                 alt='username'
             />
 

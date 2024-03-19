@@ -3,7 +3,7 @@ import {PencilSquareIcon, ChatBubbleLeftRightIcon} from '@heroicons/react/24/out
 import {useDispatch} from 'react-redux';
 import ThemeContext from '../../context/themeContext';
 import ChatList from './Components/ChatList/ChatList';
-import {setActiveChat, updateUserSelection} from '../../model/chat/chat.reducer';
+import {setActiveChat, setActivePrompt, updateUserSelection} from '../../model/chat/chat.reducer';
 import {generateUUID} from '../../utility/common.utils';
 import './SidePanel.scss';
 
@@ -12,6 +12,7 @@ const SidePanel = ({chatList}) => {
     const dispatch = useDispatch();
     const handleOnNewChatClick = () => {
         dispatch(updateUserSelection(null));
+        dispatch(setActivePrompt(''));
         dispatch(setActiveChat(generateUUID()));
     };
     

@@ -37,3 +37,8 @@ export const getChatList = createSelector(
         }, {});
     }
 );
+
+export const getActivePrompt = createSelector(
+  state => state.chat,
+  chat => chat.activePrompt || '',
+);

@@ -1,18 +1,22 @@
 // MessageInput.js
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect, useDispatch} from 'react-redux';
 import {PaperAirplaneIcon} from '@heroicons/react/24/solid';
 import {generateUUID} from '../../utility/common.utils';
 import {sendMessage} from '../../model/chat/chat.reducer';
-import {getActiveChat, getUserSelection} from '../../model/chat/chat.selector';
+import {getActiveChat, getActivePrompt, getUserSelection} from '../../model/chat/chat.selector';
 
-const MessageInput = ({chatId, activeChat, onSendMessage, userSelection}) => {
+const MessageInput = ({chatId, activeChat, activePrompt, onSendMessage, userSelection}) => {
     const dispatch = useDispatch();
 
     const [messageText, setMessageText] = useState('');
 
+    useEffect(() => {
+        setMessageText(activePrompt);
+    }, [setMessageText, activePrompt]);
+
     const handleSendMessage = () => {
-        if (messageText.trim()) {
+        if (messageText?.trim()) {
             dispatch(sendMessage({
                 id: generateUUID(),
                 text: messageText,
@@ -49,6 +53,7 @@ const MessageInput = ({chatId, activeChat, onSendMessage, userSelection}) => {
 };
 
 export default connect((state) => ({
+    activePrompt: getActivePrompt(state),
     userSelection: getUserSelection(state),
     activeChat: getActiveChat(state),
 }))(MessageInput);

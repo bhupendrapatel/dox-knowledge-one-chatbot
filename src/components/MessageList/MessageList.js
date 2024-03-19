@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import { motion } from 'framer-motion';
 import ThemeContext from '../../context/themeContext';
 import {getUserSelection, getError, getMessages} from '../../model/chat/chat.selector';
-import SelectionTile from '../SelectionTile/SelectionTile';
+import SelectionTiles from '../SelectionTile/SelectionTiles';
 
 const messageVariants = {
     enter: (direction) => ({
@@ -42,7 +42,7 @@ const MessageList = ({messages, userSelection}) => {
                 </motion.div>
             ))}
         </motion.div>
-    ) : <SelectionTile/>
+    ) : <SelectionTiles/>
 }</>;
 };
 

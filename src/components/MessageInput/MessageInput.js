@@ -48,9 +48,7 @@ const MessageInput = ({chatId, activeChat, onSendMessage, userSelection}) => {
     );
 };
 
-export default connect((state) => {
-    return {
-        userSelection: getUserSelection(state),
-        activeChat: getActiveChat(state),
-    };
-})(MessageInput);
+export default connect((state) => ({
+    userSelection: getUserSelection(state),
+    activeChat: getActiveChat(state),
+}))(MessageInput);

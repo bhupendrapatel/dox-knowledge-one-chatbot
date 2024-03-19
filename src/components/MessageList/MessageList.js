@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ThemeContext from '../../context/themeContext';
 import {getActivePrompt, getError, getMessages} from '../../model/chat/chat.selector';
 import SelectionTiles from '../SelectionTile/SelectionTiles';
+import LogoSVG from "../LogoSVG/LogoSVG";
 import DummyResponseLoader from './components/DummyResponseLoader';
 
 const messageVariants = {
@@ -34,15 +35,9 @@ const MessageList = ({messages, isLoading, activePrompt}) => {
                           }`}
                           key={index}
                       >
-                          {index % 2 !== 0 && (
-                              <img
-                                  className='object-cover w-10 h-10 rounded-full mr-5'
-                                  src='/favicon.ico'
-                                  alt='Amdocs Logo'
-                              />
-                          )}
+                          {index % 2 !== 0 && (<LogoSVG size={40} />)}
                           <div
-                              className={`max-w-xl px-4 py-2 ${
+                              className={`max-w-xl px-4 ml-5 py-2 ${
                                   index % 2 === 0 ? 'bg-gray-100' : 'text-gray-700'
                               } rounded shadow ${
                                   theme === 'dark' &&

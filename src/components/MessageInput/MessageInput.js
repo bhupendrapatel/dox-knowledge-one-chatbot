@@ -1,14 +1,13 @@
 // MessageInput.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { PaperAirplaneIcon } from '@heroicons/react/24/solid';
 import { generateUUID } from '../../utility/common.utils';
 import { sendMessage } from '../../model/chat/chat.reducer';
-import { getActiveChat } from '../../model/chat/chat.selector';
+import {getActiveChat, getActivePrompt, getUserSelection} from '../../model/chat/chat.selector';
 
-const MessageInput = ({ activeChat, setRequestSendId }) => {
-  const dispatch = useDispatch();
-
+const MessageInput = ({chatId, activeChat, activePrompt, onSendMessage, userSelection, setRequestSendId}) => {
+    const dispatch = useDispatch();
   const [messageText, setMessageText] = useState('');
 
   const handleSendMessage = () => {
@@ -24,9 +23,13 @@ const MessageInput = ({ activeChat, setRequestSendId }) => {
         })
       );
       setRequestSendId(id);
+        onSendMessage({id: chatId, text: messageText}); // Call passed-down function or dispatch action
       setMessageText('');
     }
   };
+    useEffect(() => {
+        setMessageText(activePrompt);
+    }, [setMessageText, activePrompt]);
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
@@ -54,8 +57,9 @@ const MessageInput = ({ activeChat, setRequestSendId }) => {
   );
 };
 
-export default connect((state) => {
-  return {
+
+export default connect((state) => ({
+    activePrompt: getActivePrompt(state),
+    userSelection: getUserSelection(state),
     activeChat: getActiveChat(state),
-  };
-})(MessageInput);
+}))(MessageInput);

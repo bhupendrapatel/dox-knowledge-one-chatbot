@@ -73,4 +73,5 @@ const chatSlice = createSlice({
 });
 
 export const {sendMessage, activeChat, setLoading, setActivePrompt, deleteMessage, setActiveChat, clearState, updateUserSelection} = chatSlice.actions;
+
 export default chatSlice.reducer;

@@ -4,7 +4,8 @@ const MenuPopover = ({menu, disabled, onClick}) => {
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef(null);
 
-    const toggleMenu = () => {
+    const toggleMenu = (event) => {
+        event.stopPropagation();
         setIsOpen(!isOpen);
     };
 
@@ -29,9 +30,8 @@ const MenuPopover = ({menu, disabled, onClick}) => {
             {isOpen && (
                 <div className='absolute bg-white shadow-md rounded' style={{zIndex: 10}}>
                     <ul>
-                        <li className='px-4 py-2 text-gray-500' onClick={(event) => {
-                            event.stopPropagation();
-                            toggleMenu();
+                        <li className='px-4 py-2 text-gray-500 cursor-pointer' onClick={(event) => {
+                            toggleMenu(event);
                             onClick();
                         }}>
                             Delete

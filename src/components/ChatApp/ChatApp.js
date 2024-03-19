@@ -1,5 +1,5 @@
 // ChatApp.js
-import React, { useEffect, useContext, useState } from 'react'; 
+import React, { useEffect, useContext, useState } from 'react';
 import { useDispatch, useSelector, connect } from 'react-redux';
 import { sendMessage, clearState} from '../../model/chat/chat.reducer';
 import { getActiveChat } from '../../model/chat/chat.selector';
@@ -15,11 +15,6 @@ const ChatApp = ({ activeChat }) => {
     const dispatch = useDispatch();
     const {messages} = useSelector((state) => state.chat);
     const {theme} = useContext(ThemeContext); // Use useContext to access the current theme and the toggle function
-
-    useEffect(() => {
-        return () => dispatch(clearState());
-        // Fetch messages from server or initial setup (if needed)
-    }, []); // Empty dependency array to run only once
 
     const handleSendMessage = async ({id, text}) => {
         console.log(text);

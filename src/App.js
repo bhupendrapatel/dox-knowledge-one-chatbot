@@ -4,6 +4,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {persistor, store} from './store/store';
 import Layout from './layout/Layout';
 import ThemeContext from './context/themeContext';
+import GlobalDialog from './components/GlobalDialog/GlobalDialog';
 
 function App() {
     const [theme, setTheme] = useState('dark'); // State to hold the current theme
@@ -16,6 +17,7 @@ function App() {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <ThemeContext.Provider value={{ theme, toggleTheme }}> {/* Pass the current theme and the toggle function as context */}
+                    <GlobalDialog/>
                     <Layout />
                 </ThemeContext.Provider>
             </PersistGate>

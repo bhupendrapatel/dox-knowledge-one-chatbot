@@ -1,7 +1,7 @@
 import React from 'react';
 import {motion} from 'framer-motion';
 import {useDispatch, useSelector} from 'react-redux';
-import {setActiveChat, setActivePrompt, updateUserSelection} from '../../model/chat/chat.reducer';
+import {setActiveChat, setActivePrompt, updateUserSelection, setShowDialog} from '../../model/chat/chat.reducer';
 import {generateUUID} from '../../utility/common.utils';
 import SelectionTile from './Components/SelectionTile/SelectionTile';
 import {MainTitle} from './Components/MainTitle/MainTitle';
@@ -12,10 +12,14 @@ const SelectionTiles = () => {
     const dispatch = useDispatch();
 
     const handleOnClick = value => {
-        const chatId = generateUUID();
-        dispatch(updateUserSelection(value));
-        dispatch(setActivePrompt(value))
-        dispatch(setActiveChat(chatId));
+        if (value === 'Confluence') {
+            dispatch(setShowDialog(true));
+        } else {
+            const chatId = generateUUID();
+            dispatch(updateUserSelection(value));
+            dispatch(setActivePrompt(value))
+            dispatch(setActiveChat(chatId));
+        }
     };
 
     return <div className={'flex flex-col h-full my-7 justify-around'}>

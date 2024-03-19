@@ -12,39 +12,19 @@ import { post } from '../../utility/http'; // Import ThemeContext
 
 const ChatApp = ({ activeChat }) => {
     const [isLoading, setIsLoading] = useState(false);
-    const [requestSendId, setRequestSendId] = useState('');
     const dispatch = useDispatch();
     let setTimer;
     const {messages} = useSelector((state) => state.chat);
     const {theme} = useContext(ThemeContext); // Use useContext to access the current theme and the toggle function
-
-    console.log(messages);
 
     useEffect(() => {
         return () => dispatch(clearState());
         // Fetch messages from server or initial setup (if needed)
     }, []); // Empty dependency array to run only once
 
-    useEffect(() => {
-        if (requestSendId) {
-            setIsLoading(true);
-            clearTimeout(setTimer);
-            setTimer = setTimeout(() => {
-                dispatch(
-                    sendMessage({
-                        id: generateUUID(),
-                        text: 'Result text .',
-                        timestamp: Date.now(),
-                        chatId: activeChat,
-                    })
-                );
-                setIsLoading(false);
-            }, 3000);
-        }
-    }, [requestSendId]);
-
     const handleSendMessage = async ({id, text}) => {
         console.log(text);
+        setIsLoading(true);
         try {
             const response = await post('completions', {
                 messages: [{
@@ -64,6 +44,8 @@ const ChatApp = ({ activeChat }) => {
             }));
         } catch (error) {
             console.error('Error sending message: ', error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -79,7 +61,7 @@ const ChatApp = ({ activeChat }) => {
             className='container mx-auto max-w-5xl'
         >
             <MessageList isLoading={isLoading}/>
-            <MessageInput setRequestSendId={setRequestSendId} onSendMessage={handleSendMessage}/>
+            <MessageInput onSendMessage={handleSendMessage}/>
         </div>
     );
 };

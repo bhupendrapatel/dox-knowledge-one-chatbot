@@ -6,12 +6,11 @@ import { generateUUID } from '../../utility/common.utils';
 import { sendMessage } from '../../model/chat/chat.reducer';
 import {getActiveChat, getActivePrompt, getUserSelection} from '../../model/chat/chat.selector';
 
-const MessageInput = ({chatId, activeChat, activePrompt, onSendMessage, userSelection, setRequestSendId}) => {
+const MessageInput = ({chatId, activeChat, activePrompt, onSendMessage, userSelection}) => {
     const dispatch = useDispatch();
   const [messageText, setMessageText] = useState('');
 
   const handleSendMessage = () => {
-    console.log('Already Handled, Gpood');
     if (messageText.trim()) {
       const id = generateUUID();
       dispatch(
@@ -22,8 +21,7 @@ const MessageInput = ({chatId, activeChat, activePrompt, onSendMessage, userSele
           chatId: activeChat,
         })
       );
-      setRequestSendId(id);
-        onSendMessage({id: chatId, text: messageText}); // Call passed-down function or dispatch action
+      onSendMessage({id: chatId, text: messageText}); // Call passed-down function or dispatch action
       setMessageText('');
     }
   };

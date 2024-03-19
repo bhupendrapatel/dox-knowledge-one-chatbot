@@ -28,7 +28,7 @@ const MenuPopover = ({menu, disabled, onClick}) => {
                 {menu}
             </button>
             {isOpen && (
-                <div className='absolute bg-white shadow-md rounded' style={{zIndex: 10}}>
+                <div className='absolute bg-white shadow-md rounded' style={{zIndex: 100}}>
                     <ul>
                         <li className='px-4 py-2 text-gray-500 cursor-pointer' onClick={(event) => {
                             toggleMenu(event);

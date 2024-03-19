@@ -7,8 +7,9 @@ import {getActiveChat, getChatList} from '../../../../model/chat/chat.selector';
 
 export const ChatList = ({chatList, activeChat}) => {
     const {theme} = useContext(ThemeContext);
+
     return (
-        <div className={'px-2 mt-6 py-5 flex-column'}>
+        <div className={'px-2 mt-6 py-5 flex-column overflow-y-auto'}>
             <div className={`${theme === 'light' ? 'text-gray-500': 'text-gray-50'}`}>Recent</div>
             <div className={'hide-scrollbar'}>
                 {Object.values(chatList).map((item, index) => (
@@ -19,9 +20,7 @@ export const ChatList = ({chatList, activeChat}) => {
     );
 };
 
-export default connect(state => {
-    return {
-        activeChat: getActiveChat(state),
-        chatList: getChatList(state),
-    }
-})(ChatList);
+export default connect(state => ({
+    activeChat: getActiveChat(state),
+    chatList: getChatList(state),
+}))(ChatList);

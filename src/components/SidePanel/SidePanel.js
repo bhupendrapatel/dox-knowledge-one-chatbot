@@ -15,7 +15,7 @@ const SidePanel = ({chatList}) => {
         dispatch(setActivePrompt(''));
         dispatch(setActiveChat(generateUUID()));
     };
-    
+
     return (
         <div className='h-screen left-0 top-0 overflow-y-auto flex flex-col'>
             <div className='px-3 py-6 flex flex-col flex-grow'>
@@ -23,9 +23,7 @@ const SidePanel = ({chatList}) => {
                     <span className='text-m font-medium text-gray-500'>New Chat</span>
                     <PencilSquareIcon className='h-6 w-6 text-gray-500'/>
                 </button>
-                <div>
-                    <ChatList/>
-                </div>
+                <ChatList/>
             </div>
             <div className='px-3 py-6 mt-auto bg-transparent flex flex-row justify-center items-center'>
                 <svg viewBox={`0 0 1024 1024`} className={'logo'}>

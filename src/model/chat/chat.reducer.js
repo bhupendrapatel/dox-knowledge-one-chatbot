@@ -2,26 +2,25 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {generateUUID} from '../../utility/common.utils';
 
-//  const state = {
-//      activeChat: 'chat1',
-//      userSelection: 'confluence',
-//         messages: {
-//             uuid1: {
-//                 id: 'uuid1',
-//                     text: 'message be it sender or receiver',
-//                     chatId: 'sessionUUID',
-//                     timestamp: Date.now(),
-//                     sender: true,
-//             },
-//             uuid2: {
-//                 id: 'uuid2',
-//                     text: 'message be it sender or receiver',
-//                     chatId: 'sessionUUID',
-//                     timestamp: Date.now(),
-//                     sender: false,
-//             },
-//         }
-//
+// const state = {
+//     activeChat: 'chat1',
+//     userSelection: 'confluence',
+//     messages: {
+//         uuid1: {
+//             id: 'uuid1',
+//             text: 'message be it sender or receiver',
+//             chatId: 'sessionUUID',
+//             timestamp: Date.now(),
+//             sender: true,
+//         },
+//         uuid2: {
+//             id: 'uuid2',
+//             text: 'message be it sender or receiver',
+//             chatId: 'sessionUUID',
+//             timestamp: Date.now(),
+//             sender: false,
+//         },
+//     },
 // };
 
 const initialState = {

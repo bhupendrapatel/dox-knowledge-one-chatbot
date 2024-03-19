@@ -26,12 +26,15 @@ export const getUserSelection = createSelector(
 
 export const getChatList = createSelector(
     state => state.chat.messages,
+    messages => messages,
     messages => {
         return Object.values(messages).reduce((acc, curr) => {
-            if (acc[curr.chatId]) {
-                acc[curr.chatId] = [...acc[curr.chatId], curr];
-            } else {
-                acc[curr.chatId] = [curr];
+            if (!!curr.chatId) {
+                if (acc[curr.chatId]) {
+                    acc[curr.chatId] = [...acc[curr.chatId], curr];
+                } else {
+                    acc[curr.chatId] = [curr];
+                }
             }
             return acc;
         }, {});

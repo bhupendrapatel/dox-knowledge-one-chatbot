@@ -22,17 +22,20 @@ const MenuPopover = ({menu, disabled, onClick}) => {
     }, []);
 
     return (
-        <div ref={menuRef} className='relative left-8'>
+        <div ref={menuRef}>
             <button onClick={toggleMenu} disabled={disabled}>
                 {menu}
             </button>
             {isOpen && (
-                <div className='absolute bg-white shadow-md mt-2 py-2 w-25 rounded' style={{zIndex: 10}}>
+                <div className='absolute bg-white shadow-md rounded' style={{zIndex: 10}}>
                     <ul>
-                        <li className='px-4 py-2 text-gray-500' onClick={() => {
+                        <li className='px-4 py-2 text-gray-500' onClick={(event) => {
+                            event.stopPropagation();
                             toggleMenu();
                             onClick();
-                        }}>{'Delete'}</li>
+                        }}>
+                            Delete
+                        </li>
                     </ul>
                 </div>
             )}

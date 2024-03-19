@@ -14,7 +14,7 @@ const NavHeader = () => {
                 </div>
 
                 <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-800">
-                    {theme === 'dark' ? <SunIcon className="h-6 w-6 text-gray-800 dark:text-gray-200"/> :
+                    {theme === 'dark' ? <SunIcon className="h-6 w-6 text-yellow-500 dark:text-yellow-500"/> :
                         <MoonIcon className="h-6 w-6 text-gray-800 dark:text-gray-200"/>}
                 </button>
             </nav>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {motion} from 'framer-motion';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {setActiveChat, setActivePrompt, updateUserSelection, setShowDialog} from '../../model/chat/chat.reducer';
 import {generateUUID} from '../../utility/common.utils';
 import SelectionTile from './Components/SelectionTile/SelectionTile';

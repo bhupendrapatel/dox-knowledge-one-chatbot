@@ -21,7 +21,7 @@ const MessageList = ({messages, loading, activePrompt}) => {
                             {!message.sender && (<div style={{width: '40px'}}>
                                 <LogoSVG size={40}/>
                             </div>)}
-                            <div className={`px-4 ml-5 py-2 rounded shadow ${theme === 'dark' ? (message.sender ? 'text-gray-700 bg-gray-100' : 'bg-gray-700 text-gray-100 mr-8') : (message.sender ? 'bg-gray-100' : 'bg-gray-700 text-gray-50 mr-8')}`}>
+                            <div className={`px-4 ml-5 py-2 rounded-xl shadow ${theme === 'dark' ? (message.sender ? 'text-gray-700 bg-gray-100' : 'bg-gray-700 text-gray-100 mr-8') : (message.sender ? 'bg-gray-100' : 'bg-gray-700 text-gray-50 mr-8')}`}>
                                 <div className="block overflow-hidden" dangerouslySetInnerHTML={{ __html: parseNewlines(message.text) }}></div>
                             </div>
                         </li>

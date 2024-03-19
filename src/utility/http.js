@@ -11,15 +11,14 @@ export const STATUS_CODES = {
 };
 
 // Base URL
-const baseURL = 'https://api.openai.com/v1/chat';
+const baseURL = 'http://10.208.129.135:8081/v1';
 
 // Fetch function with interceptor
 const fetchWithInterceptor = async (url, options) => {
     // Add authorization header to the request
     options.headers = {
         ...options.headers,
-        "Content-Type": 'application/json',
-        Authorization: `Bearer ${process.env.REACT_APP_OPEN_AI_API_KEY}`,
+        'Content-Type': 'application/json',
     };
 
     try {

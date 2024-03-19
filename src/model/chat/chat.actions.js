@@ -1,4 +1,4 @@
-import {sendMessage, error, setLoading, receiveMessage} from './chat.reducer';
+import {sendMessage, error, setLoading, receiveMessage, setShowDialog} from './chat.reducer';
 import {post} from '../../utility/http';
 import {generateUUID} from '../../utility/common.utils';
 export const sendMessageAction = (message) => {
@@ -7,7 +7,7 @@ export const sendMessageAction = (message) => {
         try {
             dispatch(sendMessage(message));
             const data = await post('chat', {prompt: message.text});
-            console.log(data);
+
             if (typeof data.answer === 'string'){
                 dispatch(receiveMessage({
                     id: generateUUID(),
@@ -24,3 +24,19 @@ export const sendMessageAction = (message) => {
         }
     };
 };
+
+export const addEmbeddings = (data) => {
+    return async (dispatch) => {
+        try {
+            const response = await post('download', {
+                space: data.space,
+                page_name: data.page,
+                index_child: data.includeChild || false,
+            });
+            console.log(response);
+            dispatch(setShowDialog(false));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+}

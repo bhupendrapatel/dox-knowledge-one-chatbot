@@ -6,13 +6,19 @@ import {generateUUID} from '../../utility/common.utils';
 import SelectionTile from './Components/SelectionTile/SelectionTile';
 import {MainTitle} from './Components/MainTitle/MainTitle';
 
+const selectionList = [
+    {title: 'Embedding', prompt: 'Embed new Confluence page in the chat'},
+    {title: 'Prompt', prompt: 'Optimizing any search query!'},
+    {title: 'Prompt', prompt: 'How to find validation failure fix?'},
+    {title: 'Prompt', prompt: 'Query to count validation issues.'},
+];
+
 
 const SelectionTiles = () => {
-    const selectionList = ['Confluence', 'JIRA', 'suggestion1', 'suggestion2'];
     const dispatch = useDispatch();
 
     const handleOnClick = value => {
-        if (value === 'Confluence') {
+        if (value === 'Embedding') {
             dispatch(setShowDialog(true));
         } else {
             const chatId = generateUUID();
@@ -29,7 +35,7 @@ const SelectionTiles = () => {
         </div>
         <motion.div style={{opacity: 0}} transition={{duration: 2}} animate={{opacity: 1}} className={'flex px-10'}>
         {selectionList.map((message, index) => (
-            <SelectionTile message={message} onClick={handleOnClick} index={index}/>
+            <SelectionTile key={index} message={message} onClick={handleOnClick} index={index}/>
         ))}
         </motion.div>
     </div>

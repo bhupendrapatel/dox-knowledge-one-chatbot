@@ -6,12 +6,12 @@ export const sendMessageAction = (message) => {
         dispatch(setLoading());
         try {
             dispatch(sendMessage(message));
-            const data = await post('chat', {query: message.text});
+            const data = await post('chat', {prompt: message.text});
             console.log(data);
-            if (typeof data.kwargs.content === 'string'){
+            if (typeof data.answer === 'string'){
                 dispatch(receiveMessage({
                     id: generateUUID(),
-                    text: data.kwargs.content,
+                    text: data.answer,
                     sender: false,
                     timestamp: Date.now(),
                     chatId: message.chatId,

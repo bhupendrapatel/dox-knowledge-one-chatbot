@@ -24,6 +24,8 @@ import {generateUUID} from '../../utility/common.utils';
 // };
 
 const initialState = {
+    additionalDetails: {},
+    showDialog: false,
     activePrompt: '',
     messages: {},
     theme: 'dark',
@@ -38,6 +40,12 @@ const chatSlice = createSlice({
     initialState,
     reducers: {
         clearState: () => initialState,
+        updateAdditionalDetails: (state, action) => {
+            state.additionalDetails = action.payload;
+        },
+        setShowDialog: (state) => {
+            state.showDialog = !state.showDialog;
+        },
         setActivePrompt: (state, action) => {
             state.activePrompt = action.payload;
         },
@@ -72,6 +80,5 @@ const chatSlice = createSlice({
     },
 });
 
-export const {sendMessage, receiveMessage, activeChat, setLoading, setActivePrompt, deleteMessage, setActiveChat, clearState, updateUserSelection, error} = chatSlice.actions;
-
+export const {sendMessage, activeChat, receiveMessage, setLoading, updateAdditionalDetails, setShowDialog, setActivePrompt, deleteMessage, setActiveChat, clearState, updateUserSelection, error} = chatSlice.actions;
 export default chatSlice.reducer;

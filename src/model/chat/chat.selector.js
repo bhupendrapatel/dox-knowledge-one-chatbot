@@ -46,6 +46,11 @@ export const getActivePrompt = createSelector(
   chat => chat.activePrompt || '',
 );
 
+export const getShowDialog = createSelector(
+            state => state.chat,
+            chat => chat.showDialog,
+);
+
 export const getLoading = createSelector(
     state => state.chat,
     chat => chat.loading,

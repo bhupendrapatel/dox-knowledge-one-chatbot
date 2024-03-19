@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import ThemeContext from '../../context/themeContext';
-import {getUserSelection, getError, getMessages} from '../../model/chat/chat.selector';
+import {getActivePrompt, getError, getMessages} from '../../model/chat/chat.selector';
 import SelectionTiles from '../SelectionTile/SelectionTiles';
 import DummyResponseLoader from './components/DummyResponseLoader';
 
@@ -20,11 +20,11 @@ const messageVariants = {
   },
 };
 
-const MessageList = ({ messages, isLoading, userSelection }) => {
-  const { theme } = useContext(ThemeContext);
+const MessageList = ({messages, isLoading, activePrompt}) => {
+  const {theme} = useContext(ThemeContext);
 
   return (
-      <>{userSelection ? (
+      <>{messages.length > 0 || activePrompt ? (
           <div className=' p-6 overflow-y-auto h-[40rem]'>
               <ul className='space-y-2'>
                   {messages.map((message, index) => (
@@ -61,11 +61,8 @@ const MessageList = ({ messages, isLoading, userSelection }) => {
   );
 };
 
-export default connect((state) => {
-    const userSelection = getUserSelection(state);
-    return ({
-        userSelection,
-        messages: getMessages(state),
-        error: getError(state),
-    });
-})(MessageList);
+export default connect((state) => ({
+    activePrompt: getActivePrompt(state),
+    messages: getMessages(state),
+    error: getError(state),
+}))(MessageList);

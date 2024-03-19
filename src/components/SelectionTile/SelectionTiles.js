@@ -18,7 +18,7 @@ const SelectionTiles = () => {
         dispatch(setActiveChat(chatId));
     };
 
-    return <div className={'flex flex-col h-full my-7 mx-20 justify-around'}>
+    return <div className={'flex flex-col h-full my-7 justify-around'}>
         <div className={'flex flex-col justify-end mx-12'}>
         {<MainTitle/>}
         {<motion.h1 initial={{opacity: 0, x: -20}} animate={{opacity: 1, x: 0}} transition={{duration: 1, delay: 0.5}} className={'text-3xl px-2'}>{'How may I assist you?'}</motion.h1>}

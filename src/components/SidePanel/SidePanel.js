@@ -6,6 +6,7 @@ import ChatList from './Components/ChatList/ChatList';
 import {setActiveChat, setActivePrompt, updateUserSelection} from '../../model/chat/chat.reducer';
 import {generateUUID} from '../../utility/common.utils';
 import './SidePanel.scss';
+import LogoSVG from '../LogoSVG/LogoSVG';
 
 const SidePanel = ({chatList}) => {
     const {theme} = useContext(ThemeContext);
@@ -26,13 +27,11 @@ const SidePanel = ({chatList}) => {
                 <ChatList/>
             </div>
             <div className='px-3 py-6 mt-auto bg-transparent flex flex-row justify-center items-center'>
-                <svg viewBox={`0 0 1024 1024`} className={'logo'}>
-                    <path d='M544.712 122.828h-456.919l45.031 155.627h411.884c42.944 0 77.843 34.927 77.843 77.843v77.843h-389.069c-128.752 0-233.494 104.746-233.494 233.505 0 128.748 104.742 233.526 233.494 233.526h311.226c128.752 0 233.501-104.777 233.501-233.526v-311.355c0-128.717-104.746-233.463-233.501-233.463zM622.555 667.639c0 42.916-34.927 77.84-77.843 77.84h-311.226c-42.913 0-77.84-34.92-77.84-77.84 0-42.923 34.927-77.85 77.84-77.85h389.069v77.85z'></path>
-                    <path d='M1000.933 434.165h-141.868v155.63h186.931z'></path>
-                </svg>
-                <div className='bg-transparent flex flex-col ml-2.5 items-start'>
-                    <p className='text-center font-bold text-gray-500'>KnowledgeOne</p>
-                    <p className='text-center font-bold text-gray-500'>ChatBot</p>
+                <LogoSVG size={50} />
+                <div
+                    className="bg-transparent flex flex-col ml-2.5 items-start text-transparent bg-gradient-to-r from-yellow-400 to-pink-700 bg-clip-text">
+                    <p className="text-center font-bold">KnowledgeOne</p>
+                    <p className='text-center font-bold'>ChatBot</p>
                 </div>
 
             </div>

@@ -13,7 +13,7 @@ const MessageList = ({messages, loading, activePrompt}) => {
 
     return (
         <>{messages.length > 0 || activePrompt ? (
-            <div className="p-6 overflow-y-auto h-[40rem] hide-scrollbar">
+            <div className="p-6 overflow-y-auto h-[40rem] hide-scrollbar h-full">
                 <ul className="space-y-2">
                     {messages.map((message, index) => (
                         <li key={index} className={`flex ${message.sender ? 'justify-end' : 'justify-start'}`}>

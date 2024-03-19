@@ -36,7 +36,7 @@ const MessageInput = ({chatId, activeChat, activePrompt}) => {
     };
 
     return (
-        <div className="w-full flex items-center rounded-full my-10 p-2 border border-gray-200 dark:border-gray-700">
+        <div className="w-full flex items-center rounded-full mt-4 mb-10 p-2 border border-gray-200 dark:border-gray-700">
             <input
                 className={`flex-grow px-2 py-1 rounded-md bg-transparent focus:outline-none`}
                 placeholder="Enter a prompt here..."

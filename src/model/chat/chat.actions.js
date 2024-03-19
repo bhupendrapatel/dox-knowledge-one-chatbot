@@ -25,7 +25,7 @@ export const sendMessageAction = (message) => {
     };
 };
 
-export const addEmbeddings = (data) => {
+export const addEmbeddings = (data, setLoader) => {
     return async (dispatch) => {
         try {
             const response = await post('download', {
@@ -34,6 +34,7 @@ export const addEmbeddings = (data) => {
                 index_child: data.includeChild || false,
             });
             console.log(response);
+            setLoader(false);
             dispatch(setShowDialog(false));
         } catch (err) {
             console.log(err);

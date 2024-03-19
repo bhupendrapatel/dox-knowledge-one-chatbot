@@ -3,6 +3,7 @@ import {connect, useDispatch} from 'react-redux';
 import {getShowDialog} from '../../model/chat/chat.selector';
 import {setShowDialog, updateAdditionalDetails} from '../../model/chat/chat.reducer';
 import {addEmbeddings} from '../../model/chat/chat.actions';
+import Loader from '../Loader/Loader';
 
 const GlobalDialog = ({showDialog}) => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const GlobalDialog = ({showDialog}) => {
 
     const handleOnApply = () => {
         setLoading(true);
-        dispatch(addEmbeddings(data));
+        dispatch(addEmbeddings(data, setLoading));
     };
 
     const isApplyDisabled = !(['space', 'page'].every(v => data[v]));
@@ -42,17 +43,13 @@ const GlobalDialog = ({showDialog}) => {
                             </label>
                         </div>
                         <div className="px-4 py-4 mt-2 flex justify-end shadow-2xl">
-                            {loading
-                                ? <div>Embedding In Progress</div>
-                                : (<>
-                                    <button onClick={handleOnApply} disabled={isApplyDisabled} className={`rounded font-semibold text-2xl px-4 mx-3 ${isApplyDisabled ? 'text-gray-500' : 'text-transparent bg-gradient-to-r from-yellow-400 to-pink-700 bg-clip-text'}`}>
-                                        Apply
-                                    </button>
-                                    <button onClick={handleOnClose} className="rounded font-semibold text-2xl text-black">
-                                        Cancel
-                                    </button>
-                                </>)
-                            }
+                            <button onClick={handleOnApply} disabled={loading || isApplyDisabled}
+                                className={`rounded font-semibold justify-center align-middle content-center text-2xl px-4 mx-3 ${isApplyDisabled ? 'text-gray-500' : 'text-transparent bg-gradient-to-r from-yellow-400 to-pink-700 bg-clip-text'}`}>
+                                {loading ? <Loader size={50}/> : 'Apply'}
+                            </button>
+                            <button onClick={handleOnClose} className="rounded font-semibold text-2xl text-black">
+                                Cancel
+                            </button>
                         </div>
                     </div>
                 </div>

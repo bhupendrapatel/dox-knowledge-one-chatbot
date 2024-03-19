@@ -15,7 +15,9 @@ const MessageList = ({messages, loading, activePrompt}) => {
     const listRef = useRef();
 
     useEffect(() => {
-        listRef.current.scrollTop = listRef.current.scrollHeight;
+        if (listRef.current) {
+            listRef.current.scrollTop = listRef.current.scrollHeight;
+        }
     }, [loading]);
 
     return (
@@ -37,7 +39,7 @@ const MessageList = ({messages, loading, activePrompt}) => {
                 </ul>
                 {loading && <DummyResponseLoader theme={theme}/>}
             </div>
-        ) : <SelectionTiles/>}
+        ) : <SelectionTiles />}
         </>
     );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {PencilSquareIcon} from '@heroicons/react/24/outline';
 import {useDispatch} from 'react-redux';
 import ChatList from './Components/ChatList/ChatList';
@@ -9,6 +9,7 @@ import './SidePanel.scss';
 
 const SidePanel = () => {
     const dispatch = useDispatch();
+    const scrollRef = useRef();
     const handleOnNewChatClick = () => {
         dispatch(updateUserSelection(null));
         dispatch(setActivePrompt(''));
@@ -23,8 +24,8 @@ const SidePanel = () => {
                     <PencilSquareIcon className='h-6 w-6 text-gray-500'/>
                 </button>
             </div>
-            <div className={'px-3 chat-list hide-scrollbar'}>
-                <ChatList />
+            <div ref={scrollRef} className={'px-3 chat-list hide-scrollbar'}>
+                <ChatList scrollRef={scrollRef} />
             </div>
             <div className='px-3 py-6 mt-auto bg-transparent flex flex-row justify-center items-center'>
                 <LogoSVG size={50} />

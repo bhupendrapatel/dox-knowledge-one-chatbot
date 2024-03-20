@@ -5,7 +5,7 @@ import ChatItem from './Components/ChatItem/ChatItem';
 import {getActiveChat, getChatList} from '../../../../model/chat/chat.selector';
 
 
-export const ChatList = ({chatList, activeChat}) => {
+export const ChatList = ({scrollRef, chatList, activeChat}) => {
     const {theme} = useContext(ThemeContext);
 
     return (
@@ -13,7 +13,7 @@ export const ChatList = ({chatList, activeChat}) => {
             <div className={`${theme === 'light' ? 'text-gray-500': 'text-gray-50'}`}>Recent</div>
             <div>
                 {Object.values(chatList).map((item, index) => (
-                    <ChatItem key={index} activeChat={activeChat} message={item}/>
+                    <ChatItem key={index} scrollRef={scrollRef} activeChat={activeChat} message={item}/>
                 ))}
             </div>
         </div>

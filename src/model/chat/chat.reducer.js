@@ -72,7 +72,9 @@ const chatSlice = createSlice({
             state.loading = !state.loading;
         },
         deleteMessage: (state, action) => {
-            delete state.messages[action.payload];
+            const messageIds = Object.values(state.messages).filter(v => v.chatId === action.payload).map(v => v.id);
+
+            messageIds.forEach(id => delete state.messages[id]);
         },
         error: (state, action) => {
             state.error = action.payload;

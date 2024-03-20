@@ -38,6 +38,7 @@ export const addEmbeddings = (data, setLoader) => {
             dispatch(setShowDialog(false));
         } catch (err) {
             console.log(err);
+            setLoader(false);
         }
     };
 }

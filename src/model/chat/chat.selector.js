@@ -55,3 +55,8 @@ export const getLoading = createSelector(
     state => state.chat,
     chat => chat.loading,
 );
+
+export const getAdditionalDetails = createSelector(
+    state => state.chat,
+    chat => chat.additionalDetails,
+);

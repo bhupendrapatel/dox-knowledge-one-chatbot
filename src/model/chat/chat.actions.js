@@ -46,7 +46,10 @@ export const addEmbeddings = (data, setLoader) => {
 export const uploadFiles = (formData, setLoader) => {
     return async dispatch => {
         try {
-            const response = await fileUpload('upload', formData);
+            const response = await fetch('http://10.249.170.114:8080/v1/upload', {
+                method: 'POST',
+                body: formData
+            });
             console.log(response);
             dispatch(setShowDialog(false));
         } catch (err) {

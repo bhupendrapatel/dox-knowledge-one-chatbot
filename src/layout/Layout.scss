@@ -1,9 +1,15 @@
 $totalWidth: 100vw;
-$sidePanelWidth: 288px;
+$sidePanelWidth: 300px;
 
 .side-panel {
-  width: $sidePanelWidth;
+  min-width: $sidePanelWidth;
 }
 .dynamic-window {
   width: calc(#{$totalWidth} - #{$sidePanelWidth});
+}
+
+.radial-gradient {
+  background-image: radial-gradient(rgba(164, 176, 188, 0.1) 15%, transparent 20%);
+  background-size: 20px 20px;
+  background-attachment: fixed;
 }

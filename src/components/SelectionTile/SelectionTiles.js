@@ -11,6 +11,7 @@ const selectionList = [
     {title: 'Upload', prompt: 'Upload your files to knowledge base from PDFs or Text Documents.'},
     {title: 'Prompt', prompt: 'How to find validation failure fix?'},
     {title: 'Prompt', prompt: 'Query to count validation issues.'},
+    {title: 'Prompt', prompt: 'How to do re-indexing in CatalogOne?'},
 ];
 
 

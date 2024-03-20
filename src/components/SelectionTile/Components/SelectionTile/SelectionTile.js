@@ -2,7 +2,7 @@ import React from 'react';
 import {CloudArrowUpIcon, SparklesIcon} from '@heroicons/react/24/solid';
 
 const SelectionTile = ({message, onClick, index}) => {
-    return (<div key={index} className="p-4 relative max-w-52 mx-2 bg-gray-200 rounded-2xl h-60 overflow-y-auto">
+    return (<div key={index} className="p-4 flex-1 relative max-w-52 mx-2 bg-gray-200 rounded-2xl h-60 overflow-y-auto">
         <h2 key={`title-${index}`} className="text-xl font-semibold text-gray-800 mb-2">
             {message.title}
         </h2>

@@ -36,6 +36,7 @@ const GlobalDialog = ({showDialog, additionalDetails}) => {
         [...multipleFiles].forEach((file, index) => {
             formData.append(`files_${index}`, file);
         });
+        setLoading(true);
         dispatch(uploadFiles(formData, setLoading));
     }
 

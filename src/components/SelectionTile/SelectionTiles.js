@@ -9,8 +9,8 @@ import {MainTitle} from './Components/MainTitle/MainTitle';
 const selectionList = [
     {title: 'Create', prompt: 'Create your own knowledge base from Confluence.'},
     {title: 'Upload', prompt: 'Upload your files to knowledge base from PDFs or Text Documents.'},
-    {title: 'Prompt', prompt: 'How to find validation failure fix?'},
-    {title: 'Prompt', prompt: 'Query to count validation issues.'},
+    {title: 'Prompt', prompt: 'What is Amdocs Ordering?'},
+    {title: 'Prompt', prompt: 'What system settings are required for CatalogOne UI ?'},
     {title: 'Prompt', prompt: 'How to do re-indexing in CatalogOne?'},
 ];
 

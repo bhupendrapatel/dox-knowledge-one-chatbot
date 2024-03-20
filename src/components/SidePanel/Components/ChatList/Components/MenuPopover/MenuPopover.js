@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import './MenuPopover.scss';
 
 const MenuPopover = ({top, left, display, menu, disabled, onClick}) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +28,10 @@ const MenuPopover = ({top, left, display, menu, disabled, onClick}) => {
                 {menu}
             </button>
             {isOpen && (
-                <div className='absolute bg-white shadow-md rounded' style={{top, left, zIndex: 100, display}}>
-                    <ul>
-                        <li className='px-4 py-2 text-gray-500 cursor-pointer' onClick={(event) => {
+                <div className="absolute shadow-md" style={{top, left, zIndex: 100, display}}>
+                    <div className="arrow-up"></div>
+                    <ul className={'bg-white rounded'}>
+                        <li className="px-4 py-2 text-gray-500 cursor-pointer" onClick={(event) => {
                             toggleMenu(event);
                             onClick();
                         }}>

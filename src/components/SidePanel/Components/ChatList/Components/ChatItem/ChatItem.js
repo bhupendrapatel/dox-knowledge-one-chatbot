@@ -35,11 +35,11 @@ const ChatItem = ({scrollRef, message, activeChat}) => {
 
             if (rect.top < 88 || rect.bottom > (window.innerHeight - 98)) {
                 // Hide the element
-                newPosition = {top: rect.top + 30, left: rect.width - 20, display: 'none'};
+                newPosition = {top: rect.top + 30, left: rect.width - 15, display: 'none'};
 
             } else {
                 // Show the element
-                newPosition = {top: rect.top + 30, left: rect.width - 20, display: 'block'};
+                newPosition = {top: rect.top + 30, left: rect.width - 15, display: 'block'};
             }
             setMenuPosition(newPosition);
         };

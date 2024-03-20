@@ -8,7 +8,7 @@ const DummyResponseLoader = ({theme}) => {
             <LogoSVG size={40}/>
             <div
                 className={`max-w-xl px-4 ml-5 py-2 rounded-lg shadow ${
-                    theme === 'dark' ? 'bg-gray-100 text-gray-700' : 'text-gray-700'
+                    theme === 'dark' ? 'bg-gray-100 text-gray-700' : 'bg-gray-100 text-gray-700'
                 }`}
             >
                 <Loader />

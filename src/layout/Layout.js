@@ -10,7 +10,7 @@ const Layout = () => {
     const { theme } = useContext(ThemeContext);
 
     return (
-        <div className={`${theme === 'light' ? 'bg-white' : 'bg-neutral-800'} flex flex-row`}>
+        <div className={`${theme === 'light' ? 'radial-gradient' : 'bg-neutral-800'} flex flex-row`}>
             <div className={`side-panel h-screen ${theme === 'light' ? 'bg-gray-50' : 'bg-neutral-900'}`}>
                 <SidePanel />
             </div>

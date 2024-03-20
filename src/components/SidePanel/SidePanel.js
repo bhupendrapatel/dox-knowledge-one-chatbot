@@ -24,7 +24,7 @@ const SidePanel = () => {
                     <PencilSquareIcon className='h-6 w-6 text-gray-500'/>
                 </button>
             </div>
-            <div ref={scrollRef} className={'px-3 chat-list hide-scrollbar'}>
+            <div ref={scrollRef} className={'px-3 chat-list hide-scrollbar text-right'}>
                 <ChatList scrollRef={scrollRef} />
             </div>
             <div className='px-3 py-6 mt-auto bg-transparent flex flex-row justify-center items-center'>
@@ -34,7 +34,6 @@ const SidePanel = () => {
                     <p className="text-center font-bold">KnowledgeOne</p>
                     <p className='text-center font-bold'>ChatBot</p>
                 </div>
-
             </div>
         </div>
     );

@@ -4,12 +4,14 @@ import {ChatBubbleLeftRightIcon, EllipsisVerticalIcon, SparklesIcon} from '@hero
 import ThemeContext from '../../../../../../context/themeContext';
 import {setActiveChat, deleteMessage, setActivePrompt} from '../../../../../../model/chat/chat.reducer';
 import MenuPopover from '../MenuPopover/MenuPopover';
+import {sliceMessages} from '../../ChatItem.utils';
 
 const ChatItem = ({scrollRef, message, activeChat}) => {
     const {theme} = useContext(ThemeContext);
     const dispatch = useDispatch();
     const itemRef = useRef();
     const [menuPosition, setMenuPosition] = useState({top: 0, left: 0, display: 'block'});
+    const [showMore, setShowMore] = useState(false);
 
     const handleOnDelete = () => {
         dispatch(deleteMessage(message[0].chatId));
@@ -57,15 +59,20 @@ const ChatItem = ({scrollRef, message, activeChat}) => {
                 className={`flex justify-between items-center text-sm mt-2 py-2 ${theme === 'light' ? 'text-gray-500 hover:bg-gray-300' : 'text-gray-50 hover:bg-gray-500'} ${message?.[0].chatId === activeChat && 'bg-amber-500'} rounded-full cursor-pointer`}
                 onClick={handleOnClick}>
                 <ChatBubbleLeftRightIcon className='h-6 w-6 ml-3 me-2' style={{minWidth: '24px'}} />
-                <div className={'flex-grow px-2 overflow-hidden overflow-ellipsis whitespace-nowrap'}>{message?.[0]?.text}</div>
+                <div className={'flex-grow px-2 overflow-hidden overflow-ellipsis whitespace-nowrap text-left'}>{message?.[0]?.text}</div>
                 <MenuPopover top={menuPosition.top} left={menuPosition.left} display={menuPosition.display} onClick={handleOnDelete} menu={<EllipsisVerticalIcon className='h-6 w-6 mx-2'/>}/>
             </div>
-            {(message || []).map((item, index) => (
-                item.sender && <div key={index} className={`flex justify-between items-center text-sm py-1 group cursor-pointer ${theme === 'light' ? 'text-gray-500' : 'text-gray-50'}`} onClick={() => onPromptClick(item)}>
+            {sliceMessages(message, showMore).map((item, index) => (
+                <div key={index} className={`flex justify-between items-center text-sm py-1 group cursor-pointer ${theme === 'light' ? 'text-gray-500' : 'text-gray-50'}`} onClick={() => onPromptClick(item)}>
                     <SparklesIcon className='h-6 w-6 ml-8 text-amber-400 group-hover:text-pink-600' style={{minWidth: '24px' }}/>
-                    <div className={'flex-grow px-2 overflow-hidden overflow-ellipsis whitespace-nowrap'}>{item.text}</div>
+                    <div className={'flex-grow px-2 overflow-hidden overflow-ellipsis whitespace-nowrap text-left'}>{item.text}</div>
                 </div>
             ))}
+            {sliceMessages(message, true).length > 5 && (
+                <button className="text-amber-500 hover:underline text-sm align-middle text-right px-5" onClick={() => setShowMore(v => !v)}>
+                    {showMore ? 'Show less' : 'Show more'}
+                </button>
+            )}
         </>
     );
 };

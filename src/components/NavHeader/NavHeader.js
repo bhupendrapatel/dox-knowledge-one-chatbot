@@ -7,8 +7,8 @@ const NavHeader = () => {
     const {theme, toggleTheme} = useContext(ThemeContext);
 
     return (
-        <header className="bg-transparent">
-            <nav className="flex items-center justify-between p-6 lg:px-8">
+        <header className={`shadow-lg ${theme === 'light' ? 'bg-white': 'bg-transparent'}`}>
+            <nav className="flex items-center justify-between p-4 lg:px-8">
                 <div className="flex lg:flex-1">
                     <img className="h-8 w-auto" src={theme === 'light' ? "./amdocs-logo.svg" : "./amdocs-logo-dark.svg"} alt=""/>
                 </div>

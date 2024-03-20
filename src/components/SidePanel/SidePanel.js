@@ -17,7 +17,7 @@ const SidePanel = () => {
     };
 
     return (
-        <div className='h-screen left-0 top-0 flex flex-col'>
+        <div className='h-screen left-0 top-0 flex flex-col shadow-lg'>
             <div className='px-3 py-6 flex flex-col flex-grow'>
                 <button className='flex items-center justify-between py-2 px-4 border-transparent hover:bg-gray-200 rounded' onClick={handleOnNewChatClick}>
                     <span className='text-m font-medium text-gray-500'>New Chat</span>

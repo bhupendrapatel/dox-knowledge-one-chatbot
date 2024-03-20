@@ -21,7 +21,6 @@ const ChatItem = ({scrollRef, message, activeChat}) => {
 
     const onPromptClick = (value) => {
         dispatch(setActivePrompt(value.text));
-        dispatch(setActiveChat(value.chatId));
     }
 
     useEffect(() => {
@@ -57,7 +56,7 @@ const ChatItem = ({scrollRef, message, activeChat}) => {
                 ref={itemRef}
                 className={`flex justify-between items-center text-sm mt-2 py-2 ${theme === 'light' ? 'text-gray-500 hover:bg-gray-300' : 'text-gray-50 hover:bg-gray-500'} ${message?.[0].chatId === activeChat && 'bg-amber-500'} rounded-full cursor-pointer`}
                 onClick={handleOnClick}>
-                <ChatBubbleLeftRightIcon className='h-6 w-6 ml-3 me-2'/>
+                <ChatBubbleLeftRightIcon className='h-6 w-6 ml-3 me-2' style={{minWidth: '24px'}} />
                 <div className={'flex-grow px-2 overflow-hidden overflow-ellipsis whitespace-nowrap'}>{message?.[0]?.text}</div>
                 <MenuPopover top={menuPosition.top} left={menuPosition.left} display={menuPosition.display} onClick={handleOnDelete} menu={<EllipsisVerticalIcon className='h-6 w-6 mx-2'/>}/>
             </div>

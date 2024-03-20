@@ -1,8 +1,8 @@
 $totalWidth: 100vw;
-$sidePanelWidth: 300px;
+$sidePanelWidth: 288px;
 
 .side-panel {
-  min-width: $sidePanelWidth;
+  width: $sidePanelWidth;
 }
 .dynamic-window {
   width: calc(#{$totalWidth} - #{$sidePanelWidth});

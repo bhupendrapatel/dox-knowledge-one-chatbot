@@ -1,14 +1,14 @@
 import React from 'react';
 import {motion} from 'framer-motion';
 import {useDispatch} from 'react-redux';
-import {setActiveChat, setActivePrompt, updateUserSelection, setShowDialog} from '../../model/chat/chat.reducer';
+import {setActiveChat, setActivePrompt, updateUserSelection, setShowDialog, updateAdditionalDetails} from '../../model/chat/chat.reducer';
 import {generateUUID} from '../../utility/common.utils';
 import SelectionTile from './Components/SelectionTile/SelectionTile';
 import {MainTitle} from './Components/MainTitle/MainTitle';
 
 const selectionList = [
-    {title: 'Embedding', prompt: 'Embed new Confluence page in the chat'},
-    {title: 'Prompt', prompt: 'Optimizing any search query!'},
+    {title: 'Create', prompt: 'Create your own knowledge base.'},
+    {title: 'Upload', prompt: 'Upload your files to knowledge base.'},
     {title: 'Prompt', prompt: 'How to find validation failure fix?'},
     {title: 'Prompt', prompt: 'Query to count validation issues.'},
 ];
@@ -18,8 +18,9 @@ const SelectionTiles = () => {
     const dispatch = useDispatch();
 
     const handleOnClick = value => {
-        if (value === 'Embedding') {
-            dispatch(setShowDialog(true));
+        if (value === 'Create' || value === 'Upload') {
+            dispatch(setShowDialog());
+            dispatch(updateAdditionalDetails(value))
         } else {
             const chatId = generateUUID();
             dispatch(updateUserSelection(value));

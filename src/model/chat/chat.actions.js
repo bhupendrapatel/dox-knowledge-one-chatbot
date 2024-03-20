@@ -1,5 +1,5 @@
 import {sendMessage, error, setLoading, receiveMessage, setShowDialog} from './chat.reducer';
-import {post} from '../../utility/http';
+import {post, fileUpload} from '../../utility/http';
 import {generateUUID} from '../../utility/common.utils';
 export const sendMessageAction = (message) => {
     return async (dispatch) => {
@@ -41,4 +41,18 @@ export const addEmbeddings = (data, setLoader) => {
             setLoader(false);
         }
     };
+}
+
+export const uploadFiles = (formData, setLoader) => {
+    return async dispatch => {
+        try {
+            const response = await fileUpload('upload', formData);
+            console.log(response);
+            dispatch(setShowDialog(false));
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setLoader(false);
+        }
+    }
 }

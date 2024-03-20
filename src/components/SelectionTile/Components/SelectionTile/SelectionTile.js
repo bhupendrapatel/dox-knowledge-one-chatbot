@@ -9,7 +9,7 @@ const SelectionTile = ({message, onClick, index}) => {
         <p className="text-gray-600 mb-4 text-l">
             {message.prompt}
         </p>
-        <button onClick={() => onClick(index === 0 ? message.title : message.prompt)} className="absolute bottom-4 right-4">
+        <button onClick={() => onClick(index <= 1 ? message.title : message.prompt)} className="absolute bottom-4 right-4">
             {message.title === 'Prompt' ? <SparklesIcon className="h-10 w-10 fill-amber-400 hover:fill-pink-600 shadow-2xl"/> : <CloudArrowUpIcon className="h-10 w-10 fill-amber-400 hover:fill-pink-600 shadow-2xl"/>}
         </button>
     </div>);

@@ -40,6 +40,7 @@ const fetchWithInterceptor = async (url, options) => {
 // HTTP methods
 export const get = (url, params) => fetchWithInterceptor(`${baseURL}/${url}?${new URLSearchParams(params).toString()}`, { method: 'GET' });
 export const post = (url, data) => fetchWithInterceptor(`${baseURL}/${url}`, { method: 'POST', body: JSON.stringify(data) });
+export const fileUpload = (url, data) => fetchWithInterceptor(`${baseURL}/${url}`, { method: 'POST', body: data });
 export const put = (url, data) => fetchWithInterceptor(`${baseURL}/${url}`, { method: 'PUT', body: JSON.stringify(data) });
 export const patch = (url, data) => fetchWithInterceptor(`${baseURL}/${url}`, { method: 'PATCH', body: JSON.stringify(data) });
 export const del = (url) => fetchWithInterceptor(`${baseURL}/${url}`, { method: 'DELETE' });

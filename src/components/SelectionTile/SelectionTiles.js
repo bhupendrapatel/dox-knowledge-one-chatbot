@@ -1,7 +1,7 @@
 import React from 'react';
 import {motion} from 'framer-motion';
 import {useDispatch} from 'react-redux';
-import {setActiveChat, setActivePrompt, updateUserSelection, setShowDialog} from '../../model/chat/chat.reducer';
+import {setActiveChat, setActivePrompt, updateUserSelection, setShowDialog, updateAdditionalDetails} from '../../model/chat/chat.reducer';
 import {generateUUID} from '../../utility/common.utils';
 import SelectionTile from './Components/SelectionTile/SelectionTile';
 import {MainTitle} from './Components/MainTitle/MainTitle';
@@ -18,8 +18,9 @@ const SelectionTiles = () => {
     const dispatch = useDispatch();
 
     const handleOnClick = value => {
-        if (value === 'Embedding') {
-            dispatch(setShowDialog(true));
+        if (value === 'Create' || value === 'Upload') {
+            dispatch(setShowDialog());
+            dispatch(updateAdditionalDetails(value))
         } else {
             const chatId = generateUUID();
             dispatch(updateUserSelection(value));

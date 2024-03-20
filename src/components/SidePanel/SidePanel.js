@@ -23,7 +23,7 @@ const SidePanel = () => {
                     <PencilSquareIcon className='h-6 w-6 text-gray-500'/>
                 </button>
             </div>
-            <div className={'px-3 chat-list'}>
+            <div className={'px-3 chat-list hide-scrollbar'}>
                 <ChatList />
             </div>
             <div className='px-3 py-6 mt-auto bg-transparent flex flex-row justify-center items-center'>

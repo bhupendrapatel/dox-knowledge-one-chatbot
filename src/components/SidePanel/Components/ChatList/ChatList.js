@@ -11,7 +11,7 @@ export const ChatList = ({chatList, activeChat}) => {
     return (
         <div className={'px-2 mt-6 py-5 flex-column overflow-y-auto'}>
             <div className={`${theme === 'light' ? 'text-gray-500': 'text-gray-50'}`}>Recent</div>
-            <div className={'hide-scrollbar'}>
+            <div>
                 {Object.values(chatList).map((item, index) => (
                     <ChatItem key={index} activeChat={activeChat} message={item}/>
                 ))}

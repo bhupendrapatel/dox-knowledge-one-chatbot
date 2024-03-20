@@ -33,7 +33,7 @@ const ChatItem = ({message, activeChat}) => {
                 <MenuPopover onClick={handleOnDelete} menu={<EllipsisVerticalIcon className='h-6 w-6 mx-2'/>}/>
             </div>
             {(message || []).map((item, index) => (
-                <div key={index} className={`flex justify-between items-center text-sm py-1 group cursor-pointer ${theme === 'light' ? 'text-gray-500' : 'text-gray-50'}`} onClick={() => onPromptClick(item)}>
+                item.sender && <div key={index} className={`flex justify-between items-center text-sm py-1 group cursor-pointer ${theme === 'light' ? 'text-gray-500' : 'text-gray-50'}`} onClick={() => onPromptClick(item)}>
                     <SparklesIcon className='h-6 w-6 ml-8 text-amber-400 group-hover:text-pink-600' style={{minWidth: '24px' }}/>
                     <div className={'flex-grow px-2 overflow-hidden overflow-ellipsis whitespace-nowrap'}>{item.text}</div>
                 </div>

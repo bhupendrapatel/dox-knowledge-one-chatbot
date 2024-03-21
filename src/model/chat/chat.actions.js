@@ -1,5 +1,5 @@
 import {sendMessage, error, setLoading, receiveMessage, setShowDialog} from './chat.reducer';
-import {post, fileUpload} from '../../utility/http';
+import {post} from '../../utility/http';
 import {generateUUID} from '../../utility/common.utils';
 export const sendMessageAction = (message) => {
     return async (dispatch) => {

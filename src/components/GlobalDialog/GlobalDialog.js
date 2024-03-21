@@ -3,7 +3,6 @@ import {connect, useDispatch} from 'react-redux';
 import {getShowDialog, getAdditionalDetails} from '../../model/chat/chat.selector';
 import {setShowDialog, updateAdditionalDetails} from '../../model/chat/chat.reducer';
 import {addEmbeddings, uploadFiles} from '../../model/chat/chat.actions';
-import Loader from '../Loader/Loader';
 import CreateFromConfluence from "./components/CreateFromConfluence";
 import UploadFile from "./components/UploadFile";
 

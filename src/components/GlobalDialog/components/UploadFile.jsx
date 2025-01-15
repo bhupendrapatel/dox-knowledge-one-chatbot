@@ -1,4 +1,4 @@
-import Loader from "../../Loader/Loader";
+import Loader from '../../Loader/Loader';
 import React from "react";
 
 const UploadFile = ({handleFileChange, handleFileUpload, loading, handleOnClose}) => {

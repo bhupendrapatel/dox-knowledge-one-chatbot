@@ -1,4 +1,4 @@
-import Loader from "../../Loader/Loader";
+import Loader from '../../Loader/Loader';
 import React from "react";
 
 const CreateFromConfluence = ({setData, loading, handleOnApply, handleOnClose, isApplyDisabled}) => {

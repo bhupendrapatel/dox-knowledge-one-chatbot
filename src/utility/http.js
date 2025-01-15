@@ -11,7 +11,7 @@ export const STATUS_CODES = {
 };
 
 // Base URL
-const baseURL = 'http://10.249.170.114:8080/v1';
+const baseURL = 'http://10.249.174.128:8080/v1';
 
 // Fetch function with interceptor
 const fetchWithInterceptor = async (url, options) => {
